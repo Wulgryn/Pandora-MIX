@@ -1,8 +1,9 @@
 #pragma once
 #include <Windows.h>
+
 namespace RGB
 {
-    HBRUSH GetHBRUSH(byte red, byte green, byte blue)
+    HBRUSH GetHBRUSH(unsigned char red, unsigned char green, unsigned char blue)
     {
         return CreateSolidBrush(RGB(red, green, blue));
     }
@@ -11,14 +12,16 @@ namespace RGB
 class Color
 {
     public:
-    byte red;
-    byte green;
-    byte blue;
-    Color(byte red, byte green, byte blue)
+    unsigned char red;
+    unsigned char green;
+    unsigned char blue;
+    double alpha;
+    Color(unsigned char red, unsigned char green, unsigned char blue)
     {
         this->red = red;
         this->green = green;
         this->blue = blue;
+        alpha = 1.0;
     };
 
     HBRUSH GetHBRUSH()

@@ -1,5 +1,14 @@
 #pragma once
 #include <Windows.h>
+#include <thread>
+
+#include "List.hpp"
+class WindowThreadHandler
+{
+    private:
+        List<jthread> window_threads;
+       // static void 
+};
 namespace Cursor 
 {
     #define ARROW 1
@@ -36,6 +45,13 @@ namespace ClassStyles
 }
 namespace WindowStyles
 {
-    #define TRANSPARENT_D WS_OVERLAPPED
-    UINT TRANSPARENT_ = TRANSPARENT_D;
+    #define BORDERLESS_D WS_OVERLAPPED
+    #define BORDERED_D WS_OVERLAPPEDWINDOW
+    UINT BORDERLESS = BORDERLESS_D;
+    UINT BORDERED = BORDERED_D;
+}
+namespace WindowStartupState
+{
+    #define NORMAL_D SW_SHOWNORMAL
+    UINT NORMAL = NORMAL_D;
 }

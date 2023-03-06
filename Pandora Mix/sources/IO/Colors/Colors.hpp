@@ -1,5 +1,6 @@
 #pragma once
 #include <Windows.h>
+using byte = unsigned char;
 namespace RGB
 {
     HBRUSH GetHBRUSH(byte red, byte green, byte blue)

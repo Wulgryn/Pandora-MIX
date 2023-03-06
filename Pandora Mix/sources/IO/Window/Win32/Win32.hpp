@@ -5,49 +5,57 @@
 using namespace std;
 #include "Colors.hpp"
 #include "Window.hpp"
-
 class Win32
 {
 public:
-    int cbClsExtra;
-    int cbWndExtra;
 
-    HBRUSH hbrBackground;
+    int cbClsExtra = 0;
+    int cbWndExtra = 0;
+
+    HBRUSH hbrBackground = RGB::GetHBRUSH(0,0,0);
     void SetBackgroundColor(Color color);
     void SetForegroundColor(HBRUSH hbrush);
 
-    HCURSOR hcursor;
-    void SetCursor(HCURSOR hcursor);
+    HCURSOR hCursor = NULL;
+    void SetCursor(HCURSOR hCursor);
 
-    HICON hIcon;
+    HICON hIcon = NULL;
 
     HINSTANCE hInstance = GetModuleHandle(NULL);
 
-    string className = "Win32";
+    //string className = "Win32";
     
-    string menuName = "MenuName";
+    LPCSTR lpszMenuName = NULL;
 
     UINT style = ClassStyles::REDRAW_ON_RESIZE;
 
 
-    void Create();
+    int Create();
 
     string title = "Pandora MIX";
 
-    DWORD dwStyle = WindowStyles::TRANSPARENT_;
+    DWORD dwStyle = WindowStyles::BORDERED;
 
     short x = 0;
     short y = 0;
-    short width = 0;
-    short height = 0;
+    short width = 100;
+    short height = 100;
 
     HWND hwndParent = NULL;
     HMENU hMenu = NULL;
 
+    //HINSTANCE hInstance = this->hInstance;
+
+    LPVOID lParam = NULL;
+
+    int nCmdShow = WindowStartupState::NORMAL;
+    void SetStartupState(int nCmdShow);
+
+    void SetWNDProc(LRESULT CALLBACK wndProc);
+
+    Win32(string className);
+    
 private:
     LPCSTR lpszClassName;
-    LPCSTR lpszMenuName;
-    WNDPROC lpfnWindProc;
-
-    LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
+    LRESULT CALLBACK lpfnWndProc = NULL;
 };
